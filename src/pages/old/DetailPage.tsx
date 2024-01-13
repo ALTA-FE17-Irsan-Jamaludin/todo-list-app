@@ -13,7 +13,8 @@ interface TaskType {
 
 const DetailPage: FC = () => {
   const [tasked, setTask] = useState<TaskType | null>(null);
-  const api = new TodoistApi("f45c645f4347dc0faae2e87e772829b1f7074078");
+  const apiKey = import.meta.env.VITE_TODO;
+  const api = new TodoistApi(apiKey);
   const location = useLocation();
   const id = location.state.id;
 

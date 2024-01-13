@@ -4,7 +4,6 @@ import gambarIcon from "../../assets/icons8-edit-64.png";
 import addIcon from "../../assets/icons8-add-48.png";
 import closeIcon from "../../assets/icons8-close-94.png";
 import { TodoistApi } from "@doist/todoist-api-typescript";
-const api = new TodoistApi("f45c645f4347dc0faae2e87e772829b1f7074078");
 
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +22,8 @@ export interface TypeState {
 }
 
 const Homepage: FC = () => {
+  const apiKey = import.meta.env.VITE_TODO;
+  const api = new TodoistApi(apiKey);
   const navigate = useNavigate();
   const [data, setData] = useState<TypeState>({
     modalBox: false,
