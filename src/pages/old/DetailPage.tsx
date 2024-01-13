@@ -79,8 +79,8 @@ const DetailPage: FC = () => {
             </div>
           </div>
         )}
-        <div className="flex flex-col gap-5 justify-center h-screen md:h-auto bg-slate-100 p-28 item-center rounded-md">
-          <span className="text-6xl  p-5 text-black rounded-md"> DetailPage</span>
+        <div className="flex flex-col gap-5 justify-center h-auto px-8 bg-slate-100 py-8 lg:px-16 lg:py-20 item-center rounded-md">
+          <span className="lg:text-6xl text-5xl font-semibold p-5 text-black rounded-md"> DetailPage</span>
           <hr />
           <span className="text-xl inline-block font-semibold">
             Deskripsi : <span className="text-lg font-medium">{tasked?.content}</span>
