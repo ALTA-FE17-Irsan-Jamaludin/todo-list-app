@@ -1,43 +1,50 @@
-// import editIcon from "../../assets/icons8-1edit-64.png";
-// import deleteIcon from "../../assets/icons8-delete-100.png";
+import React, { useState, useEffect } from "react";
 
-import { Component } from "react";
-
-interface typeCard {
+interface TypeCard {
+  id: any; // Tambahkan properti id untuk mengidentifikasi kartu secara unik
   description: string;
+  hapus: React.ReactEventHandler;
+  detail: React.ReactEventHandler;
 }
 
-interface typeFunction {
-  status: Boolean;
-}
+const CardCopy: React.FC<TypeCard> = ({ id, description, detail, hapus }) => {
+  const [status, setStatus] = useState<boolean>(() => {
+    // Membaca nilai dari localStorage saat komponen pertama kali dirender
+    const storedStatus = localStorage.getItem(`cardStatus-${id}`);
+    return storedStatus ? JSON.parse(storedStatus) : false;
+  });
 
-export class CardCopy extends Component<typeCard> {
-  state: typeFunction = {
-    status: false,
+  useEffect(() => {
+    // Menyimpan nilai status ke localStorage setiap kali nilai berubah
+    localStorage.setItem(`cardStatus-${id}`, JSON.stringify(status));
+  }, [status, id]);
+
+  const changeStatus = () => {
+    setStatus((prevStatus) => !prevStatus);
   };
 
-  changeStatus = () => {
-    const { status } = this.state;
-    this.setState({ status: !status });
-  };
-
-  render() {
-    const { description } = this.props;
-    return (
-      <div className="flex justify-evenly items-start p-4">
-        <div className="flex items-center justify-evenly gap-2 p-4 w-[92vw] bg-slate-200 rounded-md">
-          <div className="left w-4/5">
-            <p className="text-slate-600 text-sm">{description}</p>
-          </div>
-          <div className="right w-[35%] flex-col justify-center items-center gap-2 ">
-            <button onClick={this.changeStatus} className={`${!this.state.status ? `bg-yellow-400` : `bg-green-500`} w-full text-white flex justify-center items-center`}>
-              {!this.state.status ? "Process" : "Completed"}
-            </button>
+  return (
+    <div className="flex justify-evenly items-start  p-4">
+      <div className="flex items-center justify-evenly gap-5 p-4 lg:w-[50%] w-[92vw] bg-slate-200 rounded-md">
+        <div className="left w-[90%]">
+          <p className="text-slate-600 text-sm font-semibold">{description}</p>
+          <div className="flex justify-start items-center gap-3">
+            <a onClick={detail} className="cursor-pointer">
+              Detail
+            </a>{" "}
           </div>
         </div>
+        <div className="right grid grid-cols-2 w-[70%] lg:w-[40%] justify-center items-center gap-2">
+          <button onClick={changeStatus} className={`${!status ? `bg-yellow-400 px-8` : `bg-green-500 px-8`} w-full text-xs text-white flex justify-center items-center`}>
+            {!status ? "Process" : "Completed"}
+          </button>
+          <button onClick={hapus} className="text-xs flex justify-center items-center text-white bg-red-500">
+            Delete
+          </button>
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default CardCopy;
