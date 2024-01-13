@@ -89,7 +89,7 @@ const DetailPage: FC = () => {
             {" "}
             Order: <span className="text-lg font-medium"> {tasked?.order}</span>{" "}
           </span>
-          <button className="px-4 py-3 w-[10rem] text-white" onClick={() => setData((prev) => ({ ...prev, modalBox: !prev.modalBox }))}>
+          <button className="px-4 py-3 w-[10rem] bg-slate-500 text-white" onClick={() => setData((prev) => ({ ...prev, modalBox: !prev.modalBox }))}>
             Edit
           </button>
         </div>
