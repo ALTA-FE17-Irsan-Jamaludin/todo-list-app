@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 interface TypeCard {
-  id: any; // Tambahkan properti id untuk mengidentifikasi kartu secara unik
+  id: any;
   description: string;
   hapus: React.ReactEventHandler;
   detail: React.ReactEventHandler;
@@ -9,13 +9,11 @@ interface TypeCard {
 
 const CardCopy: React.FC<TypeCard> = ({ id, description, detail, hapus }) => {
   const [status, setStatus] = useState<boolean>(() => {
-    // Membaca nilai dari localStorage saat komponen pertama kali dirender
     const storedStatus = localStorage.getItem(`cardStatus-${id}`);
     return storedStatus ? JSON.parse(storedStatus) : false;
   });
 
   useEffect(() => {
-    // Menyimpan nilai status ke localStorage setiap kali nilai berubah
     localStorage.setItem(`cardStatus-${id}`, JSON.stringify(status));
   }, [status, id]);
 

@@ -31,7 +31,6 @@ const DetailPage: FC = () => {
       .getTask(id)
       .then((task) => {
         setTask(task);
-        console.log(task);
       })
       .catch((error: string) => console.log(error));
   };

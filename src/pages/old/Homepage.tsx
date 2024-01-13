@@ -17,7 +17,7 @@ export interface TypeState {
   modalBox: boolean;
   dataAPI: TypeProduct[];
   dataProduct: {
-    id: number | string; // id dapat berupa number atau string
+    id: number | string;
     name: string;
   };
 }
@@ -34,7 +34,6 @@ const Homepage: FC = () => {
   });
 
   const detailFunc = (item: any) => {
-    // setNilaiOutput((prevState) => ({ ...prevState, showModal: !prevState.showModal, selectedMovie: item }));
     if (item) {
       navigate(`/detail/${item}`, {
         state: {
