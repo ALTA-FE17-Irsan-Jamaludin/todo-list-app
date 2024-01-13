@@ -32,7 +32,7 @@ const CardCopy: React.FC<TypeCard> = ({ id, description, detail, hapus }) => {
             </a>{" "}
           </div>
         </div>
-        <div className="right grid grid-cols-2 w-[70%] lg:w-[40%] justify-center items-center gap-2">
+        <div className="right grid grid-cols-2 w-[70%] lg:w-[40%] justify-center items-center sm:gap-2 gap-5">
           <button onClick={changeStatus} className={`${!status ? `bg-yellow-400 px-8` : `bg-green-500 px-8`} w-full text-xs text-white flex justify-center items-center`}>
             {!status ? "Process" : "Completed"}
           </button>

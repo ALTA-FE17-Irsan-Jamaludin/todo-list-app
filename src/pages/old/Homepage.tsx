@@ -52,13 +52,10 @@ const Homepage: FC = () => {
         })
         .catch((error) => {
           if (error.response) {
-            // Kesalahan dari respons API (kode status, pesan, dll.)
             console.log("Error response:", error.response.data);
           } else if (error.request) {
-            // Tidak ada respons dari server
             console.log("No response received:", error.request);
           } else {
-            // Kesalahan lainnya
             console.log("Error:", error.message);
           }
         });
